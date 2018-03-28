@@ -1,12 +1,15 @@
 com\niit\Model\Blog.class
 com\niit\collaborationBackEnd\App.class
 com\niit\DAOImpl\JobDAOImpl.class
+com\niit\Model\ApplyJob.class
 com\niit\DAO\UserInfoDAO.class
 com\niit\DAOImpl\UserInfoDAOImpl.class
+com\niit\Model\ForumComment.class
 com\niit\DAOImpl\ForumDAOImpl.class
 com\niit\Model\UserInfo.class
 com\niit\DAO\BlogDAO.class
 com\niit\DAO\ForumDAO.class
+com\niit\Model\BlogComment.class
 com\niit\Model\Job.class
 com\niit\Model\Forum.class
 com\niit\DAO\JobDAO.class

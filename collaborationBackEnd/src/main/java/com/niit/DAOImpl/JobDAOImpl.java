@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.DAO.JobDAO;
+import com.niit.Model.ApplyJob;
 import com.niit.Model.Job;
 
 @Repository("jobDAO")
@@ -69,6 +70,16 @@ public class JobDAOImpl implements JobDAO{
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public boolean applyJob(ApplyJob applyJob) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<ApplyJob> getAllAppliedJobDetails() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

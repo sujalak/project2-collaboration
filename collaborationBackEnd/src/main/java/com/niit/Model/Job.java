@@ -1,5 +1,7 @@
 package com.niit.Model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,20 +16,25 @@ public class Job {
 	@Id
 	@GeneratedValue
 	private int jobid;
-	private String jobdescription;
+	private String company;
+	
+	
 	private double salary;
 	private String Designation;
+	private String location;
+	private String jobdescription;
+	private Date lastDateApply;
 	public int getJobid() {
 		return jobid;
 	}
 	public void setJobid(int jobid) {
 		this.jobid = jobid;
 	}
-	public String getJobdescription() {
-		return jobdescription;
+	public String getCompany() {
+		return company;
 	}
-	public void setJobdescription(String jobdescription) {
-		this.jobdescription = jobdescription;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 	public double getSalary() {
 		return salary;
@@ -40,6 +47,24 @@ public class Job {
 	}
 	public void setDesignation(String designation) {
 		Designation = designation;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getJobdescription() {
+		return jobdescription;
+	}
+	public void setJobdescription(String jobdescription) {
+		this.jobdescription = jobdescription;
+	}
+	public Date getLastDateApply() {
+		return lastDateApply;
+	}
+	public void setLastDateApply(Date lastDateApply) {
+		this.lastDateApply = lastDateApply;
 	}
 	
 }

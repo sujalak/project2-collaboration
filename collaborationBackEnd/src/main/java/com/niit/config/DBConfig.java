@@ -17,13 +17,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.DAO.BlogDAO;
 import com.niit.DAO.ForumDAO;
 import com.niit.DAO.JobDAO;
-
+import com.niit.DAO.UserInfoDAO;
 import com.niit.DAOImpl.BlogDAOImpl;
 import com.niit.DAOImpl.ForumDAOImpl;
 import com.niit.DAOImpl.JobDAOImpl;
-
+import com.niit.DAOImpl.UserInfoDAOImpl;
+import com.niit.Model.ApplyJob;
 import com.niit.Model.Blog;
+import com.niit.Model.BlogComment;
 import com.niit.Model.Forum;
+import com.niit.Model.ForumComment;
 import com.niit.Model.Job;
 import com.niit.Model.UserInfo;
 
@@ -56,7 +59,7 @@ public class DBConfig {
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 	properties.put("hibernate.format_sql", "true");
-	properties.put("hibernate.hbm2ddl.auto", "update");
+	properties.put("hibernate.hbm2ddl.auto", "create");
 		System.out.println("inn properties");
 		return properties;
 	}
@@ -66,7 +69,15 @@ public class DBConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
-		sessionFactory.setAnnotatedClasses(Blog.class,Job.class,Forum.class,UserInfo.class);
+		sessionFactory.setAnnotatedClasses(Blog.class);
+		System.out.println("blog table created");
+		sessionFactory.setAnnotatedClasses(Forum.class);
+		sessionFactory.setAnnotatedClasses(Job.class);
+		sessionFactory.setAnnotatedClasses(BlogComment.class);
+		sessionFactory.setAnnotatedClasses(ForumComment.class);
+		sessionFactory.setAnnotatedClasses(ApplyJob.class);
+
+		
 		//sessionFactory.setPackagesToScan(new String[] { "com.niit.Model" });
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		System.out.println("session");
@@ -82,10 +93,10 @@ public class DBConfig {
 		return transactionManager;
 	}
 	
-	/*@Autowired
+	@Autowired
 	@Bean(name = "userDAO")
-	public UserDAO getusersDetailDao(SessionFactory sessionFactory) {
-		return new UserDAOImpl(sessionFactory);
+	public UserInfoDAO getusersDetailDao(SessionFactory sessionFactory) {
+		return new UserInfoDAOImpl(sessionFactory);
 	}
 	@Autowired
 	@Bean(name = "jobDAO")
@@ -102,7 +113,7 @@ public class DBConfig {
 	public BlogDAO getBlogDao(SessionFactory sessionFactory) {
 		return new BlogDAOImpl(sessionFactory);
 	}
-*/
+
 
 
 }
