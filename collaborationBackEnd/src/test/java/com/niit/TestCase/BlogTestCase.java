@@ -20,11 +20,11 @@ import com.niit.Model.Blog;
 import com.niit.Model.BlogComment;
 
 public class BlogTestCase {
-
+	@Autowired
 	private static Blog blog;
 
 	private static BlogDAO blogDAO;
-	
+	@Autowired
 	private BlogComment blogComment;
 
 	@BeforeClass
@@ -38,18 +38,17 @@ public class BlogTestCase {
 		blogDAO = (BlogDAO) context.getBean("blogDAO");
 
 	}
-	//@Ignore
+	@Ignore
 	@Test
 	public void saveBlogTestcase() {
-		// DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		// LocalDate localDate = LocalDate.now();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+	
 		Date date = new Date();
-		System.out.println(dateFormat.format(date));
+	
 		System.out.println(date);
 		// blog.setBlogId(1114);
-		blog.setBlogName("CSS");
-		blog.setBlogContent("CSS is a language that describes the style of an HTML document.");
+		blog.setBlogName("Bootstrap");
+		blog.setBlogContent("Bootstrap is the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile-first websites.");
 		blog.setCreatedDate(date);
 		blog.setUserName("sonu");
 		blog.setStatus("A");
@@ -57,7 +56,7 @@ public class BlogTestCase {
 		//blog.setBlogComments(null);
 		boolean flag = blogDAO.saveOrUpdateBlog(blog);
 
-		Assert.assertEquals("Failed to add the blog!", true, flag);
+		//Assert.assertEquals("Failed to add the blog!", true, flag);
 
 	}
 
@@ -109,7 +108,7 @@ blog.setStatus("NA");
 @Ignore
 	@Test
 	public void ApproveBlogTestcase() {
-		blog = blogDAO.getBlogById(27);
+		blog = blogDAO.getBlogById(1);
 		String sts = blog.getStatus();
 		if (sts.equals("NA")) {
 			assertEquals("Successfully approved blog int the table", true, blogDAO.approveBlog(blog));
@@ -131,21 +130,21 @@ blog.setStatus("NA");
 			System.out.println("not approved");
 		}
 	}
-	@Ignore
+	//@Ignore
 	@Test
 	public void IncrementLikesTestcase() {
-		blog = blogDAO.getBlogById(26);
+		blog = blogDAO.getBlogById(1);
 		assertEquals("Successfully incremented likes to the table", true, blogDAO.incrementLike(blog));
 		System.out.println("<=========Likes=========>");
 		System.out.println("Likes After incrementing :" + blog.getLikes());
 		System.out.println("<-----------Successfully incremented blog likes-------->");
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void AddBlogCommentTestcase() {
 		blogComment = new BlogComment();
-		blog = blogDAO.getBlogById(28);
+		blog = blogDAO.getBlogById(1);
 		String username = blog.getUserName();
 		int blogId = blog.getBlogId();
 		blogComment.setBlogId(blogId);
@@ -156,11 +155,11 @@ blog.setStatus("NA");
 		System.out.println("<-----------Successfully added blogCommment-------->");
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void GetBlogCommmentTestcase() {
-		blogComment = blogDAO.getBlogComment(1);
-		assertEquals("Successfully fetched a blogComments from the table", "shubhamRD", blogComment.getUserName());
+		blogComment = blogDAO.getBlogComment(3);
+		assertEquals("Successfully fetched a blogComments from the table", "sonu", blogComment.getUserName());
 		System.out.println("<========BlogComment========>");
 		System.out.println("blogID :" + blogComment.getBlogId());
 		System.out.println("Username :" + blogComment.getUserName());
@@ -170,18 +169,18 @@ blog.setStatus("NA");
 		System.out.println("<-----------Successfully fetched blogComment-------->");
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void DeleteBlogCommentTestcase() {
-		blogComment = blogDAO.getBlogComment(22);
+		blogComment = blogDAO.getBlogComment(3);
 		assertEquals("Successfully deleted blog details from the table", true, blogDAO.deleteBlogComment(blogComment));
-		System.out.println("<-----------Successfully deleted blogComment-------->");
+		System.out.println("--------Successfully deleted blogComment----");
 	}
 
-	 @Ignore
+	// @Ignore
 	@Test
 	public void ListBlogCommentsTestcase() {
-		List<BlogComment> listBlogComments = blogDAO.listBlogComments(22);
+		List<BlogComment> listBlogComments = blogDAO.listBlogComments(3);
 		assertTrue("Successfully fetched all blogs from the table", blogDAO.listBlogComments(1).size() > 0);
 		System.out.println("<======BlogComments fetched======>");
 		for (BlogComment blogComment : listBlogComments) {
@@ -191,7 +190,7 @@ blog.setStatus("NA");
 			System.out.println("Username :" + blogComment.getUserName());
 			System.out.println("Comment Date : " + blogComment.getCommentDate());
 		}
-		System.out.println("<-----------Successfully retrieved list of blogComments-------->");
+		System.out.println("Successfully retrieved list of blogComments");
 	}
 
 

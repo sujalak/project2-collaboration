@@ -1,38 +1,24 @@
 package com.niit.collaborationBackEnd;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import com.niit.DAO.BlogDAO;
+import com.niit.DAO.UserInfoDAO;
+import com.niit.Model.Blog;
+import com.niit.Model.UserInfo;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+public class AppTest {
+	
+	public static void main(String[] args) {
+		
+		AnnotationConfigApplicationContext context =new AnnotationConfigApplicationContext();
+		context.refresh();
+		context.scan("com.niit.*");
+		
+	UserInfo	userInfo = (UserInfo) context.getBean("userInfo");
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	UserInfoDAO userInfoDAO = (UserInfoDAO) context.getBean("userInfoDAO");
+		
+	}
+ 
 }

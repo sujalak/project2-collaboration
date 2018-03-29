@@ -41,7 +41,7 @@ public class ForumTestCase {
 		forum.setContent("difference between start and run method");
 		forum.setTopic("thread FAQ");
 		forum.setUserName("rosy");
-		forum.setDateOfCreation(date);
+		forum.setCreatedDate(date);
 		boolean flag = forumDAO.saveOrUpdateForum(forum);
 
 		Assert.assertEquals("Failed to add the forum!", true, flag);

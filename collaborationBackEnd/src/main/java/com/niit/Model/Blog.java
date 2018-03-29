@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -30,10 +32,10 @@ public class Blog  {
 	 private String userName;
 	 private String status;
 	 private int likes;
-	/* @OneToMany(targetEntity = BlogComment.class, fetch = FetchType.EAGER, mappedBy = "blog")
+	 @OneToMany(targetEntity = BlogComment.class, fetch = FetchType.EAGER, mappedBy = "blog")
 		private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
 
-*/
+
 	public int getBlogId() {
 		return blogId;
 	}
@@ -46,12 +48,12 @@ public class Blog  {
 	public void setBlogName(String blogName) {
 		this.blogName = blogName;
 	}
-	/*public Set<BlogComment> getBlogComments() {
+	public Set<BlogComment> getBlogComments() {
 		return blogComments;
 	}
 	public void setBlogComments(Set<BlogComment> blogComments) {
 		this.blogComments = blogComments;
-	}*/
+	}
 	public String getBlogContent() {
 		return blogContent;
 	}

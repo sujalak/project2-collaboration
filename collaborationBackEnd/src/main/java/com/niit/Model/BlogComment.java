@@ -21,16 +21,16 @@ public class BlogComment {
 	String userName;
 	int blogId;
 	Date commentDate;
-	/*@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="blogId", nullable = false, updatable = false, insertable = false)
 	private Blog blog;
-*/
-	/*public Blog getBlog() {
-		return blog;
+
+	public Blog getBlog() {
+	return blog;
 	}
 	public void setBlog(Blog blog) {
 		this.blog = blog;
-	}*/
+	}
 	public int getCommentId() {
 		return commentId;
 	}

@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.DAO.ForumDAO;
+import com.niit.Model.Blog;
+import com.niit.Model.BlogComment;
 import com.niit.Model.Forum;
+import com.niit.Model.ForumComment;
 
 
 @Repository("forumDAO")
@@ -48,7 +51,7 @@ public class ForumDAOImpl implements ForumDAO {
 	public Forum getForumById(int  forumId) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		return session.get(Forum.class, forumId);
+		return (Forum) session.get(Forum.class, forumId);
 	}
 
 
@@ -77,6 +80,81 @@ public class ForumDAOImpl implements ForumDAO {
 		return false;
 
 	}
+
+
+	public boolean approveForum(Forum forum) {
+		try {
+			forum.setStatus("A");
+			sessionFactory.getCurrentSession().update(forum);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+
+	public boolean rejectForum(Forum forum) {
+		try {
+			forum.setStatus("NA");
+			sessionFactory.getCurrentSession().update(forum);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+
+	public List<Forum> listForum(String username) {
+	
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM Forum where username=:username").setString("username",username);
+		query.setParameter("username",username);
+		
+		List<Forum> forums = query.list();
+		return forums;
+	}
+
+
+	public boolean addForumComment(ForumComment forumComment) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(forumComment);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+
+	public boolean deleteForumComment(ForumComment forumComment) {
+		try {
+			sessionFactory.getCurrentSession().delete(forumComment);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+
+	public ForumComment getForumComment(int commentId) {
+		try {
+			Session session = sessionFactory.openSession();
+			ForumComment forumComment = (ForumComment)session.get(ForumComment.class,commentId);
+			return forumComment;
+		} catch (Exception e) {
+			return null;
+		}	
+	}
+
+
+	public List<ForumComment> listForumComments(int forumId) {
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from BlogComment where forumId=:forumId");
+		query.setParameter("forumId", new Integer(forumId));
+		@SuppressWarnings("unchecked")
+		List<ForumComment> listForumComments=query.list();
+		return listForumComments;
+	}
+	
 
 	
 }

@@ -11,9 +11,9 @@ import com.niit.DAO.UserInfoDAO;
 import com.niit.Model.UserInfo;
 
 public class UserInfoTestCase {
-	@Autowired
+	
 	private static UserInfo userInfo;
-	@Autowired
+	
 	private static UserInfoDAO userInfoDAO;
 
 	@BeforeClass

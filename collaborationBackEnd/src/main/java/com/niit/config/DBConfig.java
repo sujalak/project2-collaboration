@@ -10,8 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.DAO.BlogDAO;
@@ -19,7 +20,6 @@ import com.niit.DAO.ForumDAO;
 import com.niit.DAO.JobDAO;
 import com.niit.DAO.UserInfoDAO;
 import com.niit.DAOImpl.BlogDAOImpl;
-import com.niit.DAOImpl.ForumDAOImpl;
 import com.niit.DAOImpl.JobDAOImpl;
 import com.niit.DAOImpl.UserInfoDAOImpl;
 import com.niit.Model.ApplyJob;
@@ -36,7 +36,7 @@ import com.niit.Model.UserInfo;
 @Configuration
 @EnableTransactionManagement
 
-@ComponentScan("com.niit")
+@ComponentScan("com.niit.*")
 public class DBConfig {
 
 	@Bean(name = "dataSource")
@@ -59,30 +59,29 @@ public class DBConfig {
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 	properties.put("hibernate.format_sql", "true");
-	properties.put("hibernate.hbm2ddl.auto", "create");
+	properties.put("hibernate.hbm2ddl.auto", "update");
 		System.out.println("inn properties");
 		return properties;
 	}
 
 	@Autowired
-	@Bean(name = "sessionFactory")
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(getDataSource());
-		sessionFactory.setAnnotatedClasses(Blog.class);
-		System.out.println("blog table created");
-		sessionFactory.setAnnotatedClasses(Forum.class);
-		sessionFactory.setAnnotatedClasses(Job.class);
-		sessionFactory.setAnnotatedClasses(BlogComment.class);
-		sessionFactory.setAnnotatedClasses(ForumComment.class);
-		sessionFactory.setAnnotatedClasses(ApplyJob.class);
-
+	@Bean(name="sessionFactory")
+	public SessionFactory getSessionFactory()
+	{
 		
-		//sessionFactory.setPackagesToScan(new String[] { "com.niit.Model" });
-		sessionFactory.setHibernateProperties(getHibernateProperties());
-		System.out.println("session");
+	
+		
+		LocalSessionFactoryBuilder sessionFactoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
+		sessionFactoryBuilder.addProperties(getHibernateProperties());
+		
+		sessionFactoryBuilder.addAnnotatedClass(Blog.class);
+		sessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
+		
+		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
+		System.out.println("----SessionFactory Object----------");
 		return sessionFactory;
 	}
+
 
 	
 	@Autowired
@@ -92,28 +91,14 @@ public class DBConfig {
 
 		return transactionManager;
 	}
-	
-	@Autowired
-	@Bean(name = "userDAO")
-	public UserInfoDAO getusersDetailDao(SessionFactory sessionFactory) {
-		return new UserInfoDAOImpl(sessionFactory);
-	}
-	@Autowired
-	@Bean(name = "jobDAO")
-	public JobDAO getjobDao(SessionFactory sessionFactory) {
-		return new JobDAOImpl(sessionFactory);
-	}
-	@Autowired
-	@Bean(name = "forumDAO")
-	public ForumDAO getforumDao(SessionFactory sessionFactory) {
-		return new ForumDAOImpl(sessionFactory);
-	}
-	@Autowired
-	@Bean(name = "blogDAO")
-	public BlogDAO getBlogDao(SessionFactory sessionFactory) {
-		return new BlogDAOImpl(sessionFactory);
-	}
+	/*@Autowired
+	@Bean(name="blogDAO")
+	public BlogDAO getBlogDAO()
+	{
+		return new BlogDAOImpl();
+	}*/
 
+	
 
 
 }

@@ -103,7 +103,7 @@ public class BlogController {
 //---------------------list Blog-----------------------------------
 	@GetMapping(value = "listBlogs")
 	public ResponseEntity<List<Blog>> listBlog() {
-		List<Blog> listBlogs = blogDAO.listBlog("arpit");
+		List<Blog> listBlogs = blogDAO.listBlog("xyz");
 		if (listBlogs.size() != 0) {
 			return new ResponseEntity<List<Blog>>(listBlogs, HttpStatus.OK);
 		} else {

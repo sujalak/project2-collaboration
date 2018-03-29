@@ -15,12 +15,15 @@ import com.niit.DAO.BlogDAO;
 import com.niit.Model.Blog;
 import com.niit.Model.BlogComment;
 
-@SuppressWarnings("deprecation")
+
 @Repository("blogDAO")
 @Transactional
-
 public class BlogDAOImpl implements BlogDAO {
-	@Autowired
+	public BlogDAOImpl() {
+		
+	}
+
+	@Autowired(required=true)
 	private SessionFactory sessionFactory;
 
 	public BlogDAOImpl(SessionFactory sessionFactory) {
@@ -43,23 +46,14 @@ public class BlogDAOImpl implements BlogDAO {
 		return false;
 
 	}
-	/*
-	 * public boolean updateBlog(Blog blog) { Session session =
-	 * sessionFactory.openSession(); try { session.update(blog); session.flush();
-	 * return true; } catch (HibernateException e) { // TODO Auto-generated catch
-	 * block e.printStackTrace();
-	 * 
-	 * }
-	 * 
-	 * return false;
-	 * 
-	 * }
-	 */
+	
+	
+	 
 
 	public Blog getBlogById(int blogId) {
 		try
 		{
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		return (Blog) session.get(Blog.class, blogId);
 		} catch (Exception e) {
 			return null;
@@ -158,8 +152,8 @@ public class BlogDAOImpl implements BlogDAO {
 
 	public BlogComment getBlogComment(int commentId) {
 		try {
-			Session session = sessionFactory.openSession();
-			BlogComment blogComment = session.get(BlogComment.class,commentId);
+			Session session = sessionFactory.getCurrentSession();
+			BlogComment blogComment = (BlogComment) session.get(BlogComment.class,commentId);
 			return blogComment;
 		} catch (Exception e) {
 			return null;
@@ -167,7 +161,7 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	public List<BlogComment> listBlogComments(int blogId) {
-		Session session=sessionFactory.openSession();
+		Session session=sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from BlogComment where blogId=:blogId");
 		query.setParameter("blogId", new Integer(blogId));
 		@SuppressWarnings("unchecked")

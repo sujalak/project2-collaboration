@@ -1,5 +1,6 @@
 package com.niit.DAOImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -73,13 +74,26 @@ public class JobDAOImpl implements JobDAO{
 	}
 
 	public boolean applyJob(ApplyJob applyJob) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().save(applyJob);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 
 	public List<ApplyJob> getAllAppliedJobDetails() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			List<ApplyJob> appliedjobList = new ArrayList<ApplyJob>();
+			Query query = session.createQuery("FROM ApplyJob");
+			appliedjobList = query.list();
+			return appliedjobList;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 
