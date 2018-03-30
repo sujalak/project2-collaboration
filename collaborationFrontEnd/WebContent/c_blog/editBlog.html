@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="blogeditform" method="post" ng-controller="BlogCntrl">
+	<table style="width: 80%">
+
+		<tr>
+			<td>Blog Name</td>
+			<td><input type="text" name="blogName" ng-model="mblog.blogName" /></td>
+		</tr>
+		<tr>
+			<td>Blog content</td>
+			<td><textarea rows="8" cols="50" ng-model="mblog.blogContent"></textarea></td>
+		</tr>
+		<tr>
+
+			<td colspan="2"><input type="submit" value="update"
+				ng-click="updateBlog()" /></td>
+		
+				</button></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -45,13 +45,13 @@ public class BlogController {
 	// -----------------------Get Blog ------------------------------------
 
 			@GetMapping(value = "/getBlog/{blogId}")
-			public ResponseEntity<String> getBlog(@PathVariable("blogId") int blogId) {
+			public ResponseEntity<?> getBlog(@PathVariable("blogId") int blogId) {
 				System.out.println("Get Blog " + blogId);
 				Blog blog = blogDAO.getBlogById(blogId);
 				if (blog == null) {
 					return new ResponseEntity<String>("Get blog failure", HttpStatus.NOT_FOUND);
 				} else {
-					return new ResponseEntity<String>("Get blog Success", HttpStatus.OK);
+					return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 				}
 			}
 	// ------------------Update Blog -----------------------------------
@@ -103,7 +103,7 @@ public class BlogController {
 //---------------------list Blog-----------------------------------
 	@GetMapping(value = "listBlogs")
 	public ResponseEntity<List<Blog>> listBlog() {
-		List<Blog> listBlogs = blogDAO.listBlog("xyz");
+		List<Blog> listBlogs = blogDAO.listBlog("sujala");
 		if (listBlogs.size() != 0) {
 			return new ResponseEntity<List<Blog>>(listBlogs, HttpStatus.OK);
 		} else {
@@ -147,4 +147,18 @@ public class BlogController {
 			return new ResponseEntity<String>("Blog " + blogId + " Disapproved Successfully", HttpStatus.OK);
 		}
 	}
+	
+	@PutMapping(value = "/incrementLike/{blogId}")
+	public ResponseEntity<String> incrementLike(@PathVariable("blogId") int blogId) {
+		System.out.println("incrementing like " + blogId);
+		Blog mBlog = blogDAO.getBlogById(blogId);
+	    if(blogDAO.incrementLike(mBlog))
+	    {
+	    	  return new ResponseEntity<String>("incremented like Success", HttpStatus.OK);
+	    }
+	    else
+	  
+	    	return new ResponseEntity<String>("Update Blog Failue", HttpStatus.NOT_FOUND);
+	}
+
 }
