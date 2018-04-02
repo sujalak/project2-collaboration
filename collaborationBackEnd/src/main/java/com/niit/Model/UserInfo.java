@@ -12,6 +12,21 @@ public class UserInfo {
 	String password;
 	String emailId;
 	String conatctNo;
+	String isOnline;
+	String role;
+	
+	public String getIsOnline() {
+		return isOnline;
+	}
+	public void setIsOnline(String isOnline) {
+		this.isOnline = isOnline;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getUserName() {
 		return userName;
 	}

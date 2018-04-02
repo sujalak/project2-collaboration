@@ -7,7 +7,7 @@ myapp.config(function ($routeProvider,$locationProvider) {
 	.when("/login", {templateUrl: "Views/login.html"})
 	.when("/contactUs", {templateUrl: "/Views/contactUs.html"})  
 	.when("/aboutUs", {  templateUrl: "/Views/aboutUs.html" })
-	.when("/SignUp", { templateUrl: "Views/SignUp.html"})
+	.when("/SignUp", { templateUrl: "c_user/SignUp.html"})
 	.when("/blog", { templateUrl: "c_blog/blog.html"})
 	.when("/updateBlog", { templateUrl: "c_blog/editBlog.html"})
 	.otherwise({  redirectTo: "/"  });

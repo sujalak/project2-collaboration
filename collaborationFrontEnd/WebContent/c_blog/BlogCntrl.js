@@ -9,9 +9,7 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 		status : 'A',
 		userName : 'sujala'
 	};
-	$scope.reset=function(){
-		alert("hi");
-	}
+	fetchAllBlog();
 	$scope.insertBlog=function()
 	{
 		console.log("Enter into insertBlog Method");
@@ -31,16 +29,16 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 			            $scope.blogdata=response.data;
 				});
 	};
-	fetchAllBlog();
+	
 	$scope.editBlog=function(blogId)
 	{
 		$http.get('http://localhost:8085/collaborationMiddleWare/getBlog/'+blogId)
 		.then(function(response)
 		{
 			console.log(response.data);
-			 $scope.mblog=response.data;
+			 $scope.blog=response.data;
 			console.log('Status Text:'+response.statusText);
-			$location.path("#/updateBlog");
+			$location.path("/updateBlog");
 		});
 	};
 	$scope.updateBlog=function(blogId)
@@ -51,6 +49,7 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 			console.log(response.data);
 			 $scope.blog=response.data;
 			console.log('Status Text:'+response.statusText);
+			$location.path("/blog");
 			
 		});
 	};

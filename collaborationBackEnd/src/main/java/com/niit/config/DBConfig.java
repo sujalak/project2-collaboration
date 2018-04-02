@@ -76,7 +76,11 @@ public class DBConfig {
 		
 		sessionFactoryBuilder.addAnnotatedClass(Blog.class);
 		sessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
-		
+		sessionFactoryBuilder.addAnnotatedClass(Forum.class);
+		sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
+		sessionFactoryBuilder.addAnnotatedClass(Job.class);
+		sessionFactoryBuilder.addAnnotatedClass(ApplyJob.class);
+		sessionFactoryBuilder.addAnnotatedClass(UserInfo.class);
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
 		System.out.println("----SessionFactory Object----------");
 		return sessionFactory;

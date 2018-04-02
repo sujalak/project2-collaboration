@@ -12,5 +12,7 @@ public interface UserInfoDAO {
 	public List<UserInfo> getAllUserInfo();
 
 	public boolean delete(String userName);
+	public boolean validateLogin(UserInfo userInfo);
+	public boolean updateOnlineStatus(String status, String userName);
 
 }

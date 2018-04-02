@@ -13,12 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.DAO.UserInfoDAO;
 import com.niit.Model.UserInfo;
 import com.niit.Model.UserInfo;
+
 @Repository("userInfoDAO")
 @Transactional
-public class UserInfoDAOImpl implements UserInfoDAO{
+public class UserInfoDAOImpl implements UserInfoDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public UserInfoDAOImpl(SessionFactory sessionFactory) {
 		super();
 		this.sessionFactory = sessionFactory;
@@ -27,6 +28,8 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	public boolean saveOrUpdateUserInfo(UserInfo userInfo) {
 		Session session = sessionFactory.openSession();
 		try {
+			userInfo.setIsOnline("N");
+			userInfo.setRole("ROLE_USER");
 			session.saveOrUpdate(userInfo);
 			session.flush();
 			return true;
@@ -34,19 +37,18 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return false;
-			
+
 	}
 
 	public UserInfo getUserInfoByName(String userName) {
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from UserInfo where userName = '"+userName + "'");
+		Query query = session.createQuery("from UserInfo where userName = '" + userName + "'");
 		System.out.println(query.list());
-			UserInfo userInfo=(UserInfo) query.list().get(0);
+		UserInfo userInfo = (UserInfo) query.list().get(0);
 		return userInfo;
 	}
-
 
 	public List<UserInfo> getAllUserInfo() {
 		Session session = sessionFactory.getCurrentSession();
@@ -65,11 +67,48 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 
 			return true;
 		} catch (HibernateException e) {
-		
+
 			e.printStackTrace();
 		}
 		return false;
 
+	}
+
+	public boolean validateLogin(UserInfo userInfo) {
+
+		try {
+			Session session = sessionFactory.openSession();
+			Query query = session.createQuery("from UserInfo");
+			query.setParameter("username", userInfo.getUserName());
+			query.setParameter("password", userInfo.getPassword());
+			UserInfo userInfonew = (UserInfo) query;
+			session.close();
+			if (userInfonew == null)
+				return false;
+			else
+				return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean updateOnlineStatus(String status, String userName) {
+		try {
+			UserInfo userInfo = getUserInfoByName(userName);
+			userInfo.setIsOnline(status);
+			sessionFactory.getCurrentSession().delete(userInfo);
+			sessionFactory.getCurrentSession().flush();
+
+			return true;
+
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 
 }

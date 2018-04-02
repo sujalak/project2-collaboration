@@ -31,21 +31,23 @@ public class UserInfoTestCase {
 	@Test
 	public void saveUserInfoTestcase() {
 		//userInfo.setUserInfoid(1284);
-		userInfo.setUserName("rupa");
-		userInfo.setEmailId("rupa@gmail.com");
+		userInfo.setUserName("sujala");
+		userInfo.setEmailId("sujala@gmail.com");
 		userInfo.setPassword("12345");
-		userInfo.setConatctNo("98765329");
+		userInfo.setConatctNo("888765432");
+		userInfo.setIsOnline("Y");
+		userInfo.setRole("ROLE_ADMIN");
 		boolean flag = userInfoDAO.saveOrUpdateUserInfo(userInfo);
 
 		Assert.assertEquals("Failed to add the userInfo!", true, flag);
 	}
 	
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void updateUserInfoTestcase() {
 
-		userInfo = userInfoDAO.getUserInfoByName("anveet");
+		userInfo = userInfoDAO.getUserInfoByName("neeta");
 		userInfo.setPassword("1234abc");
          
 		boolean flag = userInfoDAO.saveOrUpdateUserInfo(userInfo);
@@ -66,13 +68,13 @@ public class UserInfoTestCase {
 	}
 
 
-
+	@Ignore
 	@Test
 	public void getUserInfobyNameTestcase() {
 		userInfo = userInfoDAO.getUserInfoByName("aju");
 		Assert.assertEquals("Failed to get the userInfo!", "aju@123.com", userInfo.getEmailId());
 	}
-	
+	@Ignore
 	@Test
 	public void getAllUserInfosTestCase() {
 		int count = userInfoDAO.getAllUserInfo().size();
