@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Component
 @Entity
@@ -32,6 +33,7 @@ public class Blog  {
 	 private String userName;
 	 private String status;
 	 private int likes;
+	  @JsonManagedReference
 	 @OneToMany(targetEntity = BlogComment.class, fetch = FetchType.EAGER, mappedBy = "blog")
 		private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
 

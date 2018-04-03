@@ -38,7 +38,7 @@ public class BlogTestCase {
 		blogDAO = (BlogDAO) context.getBean("blogDAO");
 
 	}
-	@Ignore
+	//@Ignore
 	@Test
 	public void saveBlogTestcase() {
 		
@@ -64,7 +64,7 @@ public class BlogTestCase {
 	@Test
 	public void listBlogTestcase() {
 
-		int count = blogDAO.listBlog("sonu").size();
+		int count = blogDAO.listBlogs().size();
 
 		Assert.assertEquals("Failed to list the blog!", 2, count);
 
@@ -155,7 +155,7 @@ blog.setStatus("NA");
 		System.out.println("<-----------Successfully added blogCommment-------->");
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void GetBlogCommmentTestcase() {
 		blogComment = blogDAO.getBlogComment(3);
@@ -169,7 +169,7 @@ blog.setStatus("NA");
 		System.out.println("<-----------Successfully fetched blogComment-------->");
 	}
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void DeleteBlogCommentTestcase() {
 		blogComment = blogDAO.getBlogComment(3);
@@ -177,7 +177,7 @@ blog.setStatus("NA");
 		System.out.println("--------Successfully deleted blogComment----");
 	}
 
-	// @Ignore
+	 @Ignore
 	@Test
 	public void ListBlogCommentsTestcase() {
 		List<BlogComment> listBlogComments = blogDAO.listBlogComments(3);

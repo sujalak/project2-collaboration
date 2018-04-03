@@ -1,13 +1,13 @@
 myapp.controller('BlogCntrl', function($scope, $http, $location) {
 	
 	$scope.blog = {
-		blogId : 0,
+		blogId : '',
 		blogName:'',
 		blogContent:'',
 		createdDate : '',
 		likes:0,
-		status : 'A',
-		userName : 'sujala'
+		status : '',
+		userName : ''
 	};
 	fetchAllBlog();
 	$scope.insertBlog=function()
@@ -17,6 +17,7 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 		.then(fetchAllBlog(),function(response)
      	{
 			console.log('Status Text:'+response.statusText);
+			fetchAllBlog();
 	     });			
 	};
 	
@@ -32,18 +33,21 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 	
 	$scope.editBlog=function(blogId)
 	{
+		
 		$http.get('http://localhost:8085/collaborationMiddleWare/getBlog/'+blogId)
 		.then(function(response)
 		{
 			console.log(response.data);
 			 $scope.blog=response.data;
 			console.log('Status Text:'+response.statusText);
-			$location.path("/updateBlog");
+			$location.path("/modifyblog");
 		});
 	};
-	$scope.updateBlog=function(blogId)
+	$scope.updateBlog=function()
 	{
-		$http.put('http://localhost:8085/collaborationMiddleWare/updateBlog/'+blogId)
+		console.log('updating', $scope.blog.blogId)
+
+		$http.put('http://localhost:8085/collaborationMiddleWare/updateBlog/'+$scope.blog.blogId)
 		.then(function(response)
 		{
 			console.log(response.data);
@@ -62,8 +66,10 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 			console.log(response.data);
 			 $scope.blogdel=response.data;
 			console.log('Status Text:'+response.statusText);
+			fetchAllBlog();
 			$location.path("/blog");
 		});
+		
 	};
 	
 	

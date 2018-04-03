@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Component
 @Entity
 public class BlogComment {
@@ -21,6 +23,7 @@ public class BlogComment {
 	String userName;
 	int blogId;
 	Date commentDate;
+	 @JsonBackReference
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="blogId", nullable = false, updatable = false, insertable = false)
 	private Blog blog;

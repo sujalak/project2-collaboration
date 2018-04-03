@@ -101,9 +101,10 @@ public class BlogController {
 	
 	
 //---------------------list Blog-----------------------------------
-	@GetMapping(value = "listBlogs")
-	public ResponseEntity<List<Blog>> listBlog() {
-		List<Blog> listBlogs = blogDAO.listBlog("sujala");
+	@GetMapping(value = "/listBlogs")
+	public ResponseEntity<List<Blog>> listBlogs() {
+		List<Blog> listBlogs = blogDAO.listBlogs();
+	
 		if (listBlogs.size() != 0) {
 			return new ResponseEntity<List<Blog>>(listBlogs, HttpStatus.OK);
 		} else {

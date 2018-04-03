@@ -9,7 +9,7 @@ myapp.config(function ($routeProvider,$locationProvider) {
 	.when("/aboutUs", {  templateUrl: "/Views/aboutUs.html" })
 	.when("/SignUp", { templateUrl: "c_user/SignUp.html"})
 	.when("/blog", { templateUrl: "c_blog/blog.html"})
-	.when("/updateBlog", { templateUrl: "c_blog/editBlog.html"})
+	.when("/modifyblog", { templateUrl: "c_blog/editBlog.html"})
 	.otherwise({  redirectTo: "/"  });
 
 	$locationProvider.hashPrefix('');

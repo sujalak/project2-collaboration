@@ -105,7 +105,7 @@ public class BlogDAOImpl implements BlogDAO {
 		}
 	}
 
-	public List<Blog> listBlog(String username) {
+	/*public List<Blog> listBlog(String username) {
 
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("FROM Blog where username=:username").setString("username",username);
@@ -114,8 +114,18 @@ public class BlogDAOImpl implements BlogDAO {
 		List<Blog> blogs = query.list();
 		return blogs;
 
-	}
+	}*/
 
+	public List<Blog> listBlogs() {
+
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM Blog");
+		
+		
+		List<Blog> blogs = query.list();
+		return blogs;
+
+	}
 	public boolean incrementLike(Blog blog) {
 		try {
 			int likes = blog.getLikes();

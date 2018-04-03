@@ -18,7 +18,7 @@ public interface BlogDAO {
 
 	public boolean rejectBlog(Blog blog);
 
-	public List<Blog> listBlog(String username);
+	public List<Blog> listBlogs();
 
 	public boolean incrementLike(Blog blog);
 
