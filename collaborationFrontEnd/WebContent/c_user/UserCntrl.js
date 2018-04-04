@@ -31,10 +31,11 @@ myapp.controller("UserCntrl",function($scope,$http,$location,$rootScope,$cookieS
 		delete $rootScope.currentUser;
 		$cookieStore.remove('userInfo');
 		$location.path("/logout");
-	}
+	};
 	
 	
-	$scope.SignUpuser=function()
+
+		$scope.SignUpuser = function()
 	{
 		console.log("Enter into SingupUser Method");
 		$http.post('http://localhost:8085/collaborationMiddleWare/SignUp',$scope.user)
@@ -43,6 +44,20 @@ myapp.controller("UserCntrl",function($scope,$http,$location,$rootScope,$cookieS
 			console.log('Status Text:'+response.statusText);
 	     });			
 	};
+	
+	
+	
+	$scope.uploadimage = function()
+	{
+		console.log("Enter into Upload image method");
+		$http.post('http://localhost:8085/collaborationMiddleWare/doUpload')
+		.then(function(response)
+     	{
+			console.log(response);
+			console.log('Status Text:'+response.statusText);
+	     });			
+	};
+	
 	
 	
 });

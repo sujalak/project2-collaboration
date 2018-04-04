@@ -3,8 +3,10 @@ package com.niit.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class ProfilePic {
 	
 	

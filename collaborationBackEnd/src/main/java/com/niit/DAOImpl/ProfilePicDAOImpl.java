@@ -27,6 +27,7 @@ public class ProfilePicDAOImpl implements ProfilePicDAO{
 			
 			session.saveOrUpdate(profilePic);
 			session.flush();
+			session.close();
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
@@ -38,8 +39,10 @@ public class ProfilePicDAOImpl implements ProfilePicDAO{
 	}
 
 	public ProfilePic getProfilePicture(String username) {
-		Session session=sessionFactory.getCurrentSession();
-		return (ProfilePic) session.get(ProfilePic.class,username);
+		Session session=sessionFactory.openSession();
+        ProfilePic profilePicture=(ProfilePic)session.get(ProfilePic.class,username);
+        session.close();
+        return profilePicture;
 	}
 
 }

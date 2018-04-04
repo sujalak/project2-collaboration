@@ -9,6 +9,14 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 		status : '',
 		userName : ''
 	};
+	$scope.comment={
+			
+			commentId:'',
+			commentText:'',
+			commentDate:'',
+			blogId:'',
+			username:''
+	}
 	fetchAllBlog();
 	$scope.insertBlog=function()
 	{
@@ -85,7 +93,16 @@ myapp.controller('BlogCntrl', function($scope, $http, $location) {
 		});
 	};
 	
-	
+	$scope.postComments=function(blogId)
+	{
+		console.log("Enter into insertcomment Method");
+		$http.post('http://localhost:8085/collaborationMiddleWare/postComment/blogId',$scope.comment)
+		.then(fetchAllBlog(),function(response)
+     	{
+			console.log('Status Text:'+response.statusText);
+			fetchAllBlog();
+	     });			
+	};
 	
 });
 	

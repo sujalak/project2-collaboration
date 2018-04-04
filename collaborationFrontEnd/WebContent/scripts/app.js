@@ -15,3 +15,18 @@ myapp.config(function ($routeProvider,$locationProvider) {
 	$locationProvider.hashPrefix('');
 });
 
+myapp.run(function($rootScope,$cookieStore)
+		{
+			console.log('I am in run function');
+			console.log($rootScope.currentUser);
+			
+				if($rootScope.currentUser==undefined)
+				{
+				$rootScope.currentUser=$cookieStore.get('userInfo');
+				}
+				else
+				{
+				console.log($rootScope.currentUser.username);
+				console.log($rootScope.currentUser.role);
+				}
+		});

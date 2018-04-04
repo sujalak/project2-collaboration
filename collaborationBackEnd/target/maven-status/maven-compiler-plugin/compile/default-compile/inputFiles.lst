@@ -1,12 +1,15 @@
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\DAOImpl\UserInfoDAOImpl.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\ApplyJob.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\DAO\UserInfoDAO.java
+D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\ProfilePic.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\DAOImpl\BlogDAOImpl.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\config\DBConfig.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\Blog.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\ForumComment.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\DAO\BlogDAO.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\Job.java
+D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\DAO\ProfilePicDAO.java
+D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\DAOImpl\ProfilePicDAOImpl.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\Forum.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\Model\BlogComment.java
 D:\collaborationProject\collaborationBackEnd\src\main\java\com\niit\collaborationBackEnd\App.java
