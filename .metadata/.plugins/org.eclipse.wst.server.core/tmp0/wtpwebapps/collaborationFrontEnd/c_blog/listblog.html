@@ -1,0 +1,57 @@
+<form id="blogform" method="post" ng-controller="BlogCntrl">
+		<h1>List of All Blogs</h1> <br />
+
+	</font> 
+<div class="container">
+
+		<table class="table table-bordered" class="table-responsive" >
+			<thead>
+				<tr>
+					<th>Blog Name</th>
+					<th>Blog Content</th>
+					<th>Like</th>
+					<th>Comment</th>
+					<th>edit</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="blog in blogdata">
+				<tr >
+					<td>{{blog.blogName}}</td>
+					<td>{{blog.blogContent}}</td>
+					<td>{{blog.likes}}
+						<button ng-click="incrementLike(blog.blogId)">
+							<span class="glyphicon glyphicon-thumbs-up"></span></span>
+						</button>
+					</td>
+<td>
+					
+						<button onclick="ShowHide()" class="btn btn-info btn-lg"> <span
+								class="glyphicon glyphicon-comment"></span> Comment
+							</a>
+						</button>
+					</td>
+
+					<td>
+						<button ng-click="editBlog(blog.blogId)">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</button>
+					</td>
+					<td><button ng-click="deleteBlog(blog.blogId)">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button></td>
+					</a>
+				</tr>
+					<tr  ng-show = "IsVisible">
+		
+ <textarea rows="2" cols="50"  ng-model="comment.commentText">
+comment here
+</textarea>
+<button ng-click="postComment(blog.blogId)" value="post" >post</button>
+
+</tr>
+			
+			</tbody>
+		</table>
+	</div>
+	</form>

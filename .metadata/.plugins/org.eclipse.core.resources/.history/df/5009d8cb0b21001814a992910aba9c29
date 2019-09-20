@@ -1,0 +1,45 @@
+package com.niit.DAOImpl;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.niit.DAO.ForumDAO;
+import com.niit.Model.Forum;
+@Repository("forumDAO")
+@Transactional
+
+public class ForumDAOImpl implements ForumDAO {
+	@Autowired
+	private SessionFactory sessionFactory;
+
+
+	public ForumDAOImpl(SessionFactory sessionFactory) {
+	
+		this.sessionFactory = sessionFactory;
+	}
+
+	public boolean saveOrUpdateForum(Forum Forum) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Forum getForumById(int ForumId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Forum> getAllForums() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean delete(int ForumId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

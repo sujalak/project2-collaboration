@@ -1,0 +1,24 @@
+package com.niit.testcase;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+
+
+	
+	public class ConnectionTestCase{
+		@Test
+		public void connectiontest()
+		{
+			AnnotationConfigApplicationContext  context = new AnnotationConfigApplicationContext();
+			context.scan("com.niit"); 
+			context.refresh();
+			
+	     
+		}
+
+		
+	}
+	
+

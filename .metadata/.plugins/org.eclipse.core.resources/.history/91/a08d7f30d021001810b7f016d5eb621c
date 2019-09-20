@@ -1,0 +1,72 @@
+package com.niit.DAOImpl;
+
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.niit.DAO.UserDAO;
+import com.niit.Model.UserDetails;
+
+@Repository("userDAO")
+@Transactional
+public class UserDAOImpl implements UserDAO{
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public UserDAOImpl(SessionFactory sessionFactory) {
+		
+		this.sessionFactory = sessionFactory;
+	}
+
+	public boolean saveOrUpdateUser (UserDetails  user) {
+		Session session = sessionFactory.openSession();
+		try {
+			session.saveOrUpdate(user);
+			session.flush();
+			return true;
+		} catch (HibernateException e) {
+		
+			e.printStackTrace();
+			
+		}
+		
+		return false;
+	}
+
+	public  UserDetails  getUserById(int userId) {
+		Session session = sessionFactory.openSession();
+		return (UserDetails) session.get( UserDetails.class, userId);
+	}
+
+	public List< UserDetails > getAllUsers() {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from  UserDetails  ORDER BY userId ASC");
+		@SuppressWarnings("unchecked")
+		List< UserDetails> users = query.list();
+		return users;
+
+	}
+	
+
+	public boolean delete(int userId) {
+		try {
+
+			 UserDetails  user = getUserById(userId);
+			sessionFactory.getCurrentSession().delete(user);
+			sessionFactory.getCurrentSession().flush();
+
+			return true;
+		} catch (HibernateException e) {
+		
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+}

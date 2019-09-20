@@ -1,0 +1,17 @@
+package com.niit.DAO;
+
+import com.niit.Model.Blog;
+
+
+
+public interface BlogDAO {
+	public void saveOrUpdateBlog(Blog blog);
+
+	public Blog getBlogById(String blogId);
+
+	public List<Blog> getAllBlogs();
+	
+	public boolean delete(String blogId);
+
+
+}

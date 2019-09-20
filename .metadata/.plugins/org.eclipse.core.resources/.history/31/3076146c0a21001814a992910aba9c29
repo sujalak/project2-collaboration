@@ -1,0 +1,21 @@
+package com.niit.DAO;
+
+import java.util.List;
+
+import com.niit.Model.Blog;
+
+public interface ForumDAO {
+	
+		public boolean saveOrUpdateBlog(Blog blog);
+		
+
+		public Blog getBlogById(int blogId);
+
+		public List<Blog> getAllBlogs();
+		
+		public boolean delete(int blogId);
+
+
+	}
+
+}

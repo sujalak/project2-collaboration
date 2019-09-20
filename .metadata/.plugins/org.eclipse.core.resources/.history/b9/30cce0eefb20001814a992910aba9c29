@@ -1,0 +1,52 @@
+package com.niit.testcase;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.BlogDAO;
+import com.niit.Model.Blog;
+
+public class BlogTestCase {
+	@Autowired
+	private static Blog blog;
+	@Autowired
+	private static BlogDAO blogDAO;
+
+	@BeforeClass
+	public static void init()
+	{
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+		
+		blog = (Blog) context.getBean("blog");
+		
+		blogDAO = (BlogDAO) context.getBean("blogDAO");
+		
+	}
+@Test
+public void saveBlogTestcase()
+{
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	LocalDate localDate = LocalDate.now();
+	blog.setBlogId(1);
+	blog.setBlogName("hibernate");
+	blog.setBlogContent("it is orm tool");
+	blog.setCreatedDate(localDate);
+	blog.setUserName("john");
+	boolean flag = blogDAO.saveOrUpdateBlog(blog);
+	 
+	Assert.assertEquals("Failed to add the blog!", true, flag);	
+
+	
+
+
+}
+
+}

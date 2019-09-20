@@ -31,7 +31,7 @@ public class ForumTestCase {
 		forumDAO = (ForumDAO) context.getBean("forumDAO");
 
 	}
-	@Ignore
+	
 	@Test
 	public void saveOrUpdateForum() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -48,7 +48,7 @@ public class ForumTestCase {
 		
 		
 	}
-
+	@Ignore
 	@Test
 	public void updateForumTestcase() {
 		
@@ -61,7 +61,7 @@ public class ForumTestCase {
 		Assert.assertEquals("Failed to update the forum!", true, flag);
 
 	}
-	
+	@Ignore
 	@Test
 public void deleteForumTestcase() {
 			

@@ -1,0 +1,86 @@
+ <script type="text/javascript">
+        var app = angular.module('MyApp', [])
+        app.controller('MyController', function ($scope) {
+            //This will hide the DIV by default.
+            $scope.IsVisible = false;
+            $scope.ShowHide = function () {
+                //If DIV is visible it will be hidden and vice versa.
+                $scope.IsVisible = $scope.IsVisible ? false : true;
+            }
+        });
+    </script>
+<form id="blogform" method="post" ng-controller="BlogCntrl">
+	<table style="width: 80%">
+
+		<tr>
+			<td>Blog Name</td>
+			<td><input type="text" name="blogName" ng-model="blog.blogName" /></td>
+		</tr>
+		<tr>
+			<td>Blog content</td>
+			<td><textarea rows="8" cols="50" ng-model="blog.blogContent"></textarea></td>
+		</tr>
+		<tr>
+
+			<td colspan="2"><input type="submit" value="Insert"
+				ng-click="insertBlog()" /></td>
+			<td><input type="submit" value="reset" ng-click="reset()">RESET
+				</button></td>
+		</tr>
+	</table>
+
+	<div class="container">
+
+		<table class="table table-bordered" class="table-responsive">
+			<thead>
+				<tr>
+					<th>Blog Name</th>
+					<th>Blog Content</th>
+					<th>Like</th>
+					<th>like</th>
+					<th>edit</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="blog in blogdata">
+				<tr >
+					<td>{{blog.blogName}}</td>
+					<td>{{blog.blogContent}}</td>
+					<td>{{blog.likes}}
+						<button ng-click="incrementLike(blog.blogId)">
+							<span class="glyphicon glyphicon-thumbs-up"></span></span>
+						</button>
+					</td>
+<td>
+					
+						<button onclick="ShowHide()" class="btn btn-info btn-lg"> <span
+								class="glyphicon glyphicon-comment"></span> Comment
+							</a>
+						</button>
+					</td>
+
+					<td>
+						<button ng-click="editBlog(blog.blogId)">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</button>
+					</td>
+					<td><button ng-click="deleteBlog(blog.blogId)">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button></td>
+					</a>
+				</tr>
+				<tr>
+					
+				</tr>
+				<tr>
+			<div ng-show = "IsVisible">
+ <textarea rows="2" cols="50"  ng-model="comment.commentText" ng-hide>
+comment here
+</textarea>
+<button ng-click="postComment(blog.blogId)" value="post" >post</button>
+</div>
+</tr>
+			</tbody>
+		</table>
+	</div>
+</form>

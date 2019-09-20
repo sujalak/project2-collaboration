@@ -1,0 +1,15 @@
+127.0.0.1 - - [27/Dec/2018:12:47:22 +0530] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/index.html HTTP/1.1" 200 2481
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/scripts/angular.js HTTP/1.1" 200 1289501
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/scripts/angular-route.min.js HTTP/1.1" 200 5626
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/Styles/mystyle.css HTTP/1.1" 200 2566
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/scripts/angular-cookies.js HTTP/1.1" 200 9998
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/scripts/app.js HTTP/1.1" 200 1267
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:26 +0530] "GET /collaborationFrontEnd/c_blog/BlogCntrl.js HTTP/1.1" 200 2648
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:27 +0530] "GET /collaborationFrontEnd/c_user/UserCntrl.js HTTP/1.1" 200 1558
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:30 +0530] "GET /collaborationFrontEnd/Footer.html HTTP/1.1" 200 1888
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:30 +0530] "GET /collaborationFrontEnd/Views/home.html HTTP/1.1" 200 140
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:30 +0530] "GET /collaborationFrontEnd/Images/chatting.jpg HTTP/1.1" 200 49511
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:49 +0530] "GET /Views/aboutUs.html HTTP/1.1" 404 1095
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:50 +0530] "GET /Views/contactUs.html HTTP/1.1" 404 1097
+0:0:0:0:0:0:0:1 - - [27/Dec/2018:12:47:51 +0530] "GET /Views/aboutUs.html HTTP/1.1" 404 1095

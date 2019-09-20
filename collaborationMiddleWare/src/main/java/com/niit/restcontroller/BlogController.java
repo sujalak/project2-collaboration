@@ -56,12 +56,13 @@ public class BlogController {
 			}
 	// ------------------Update Blog -----------------------------------
 
-		@PutMapping(value = "/updateBlog/{blogId}")
-		public ResponseEntity<String> updateBlog(@PathVariable("blogId") int blogId, @RequestBody Blog blog) {
-			System.out.println("Updating Blog " + blogId);
-			Blog mBlog = blogDAO.getBlogById(blogId);
-			if (mBlog == null) {
-				System.out.println("Blog with blogId " + blogId + " Not Found");
+		@PutMapping(value = "/updateBlog")
+		public ResponseEntity<String> updateBlog(@RequestBody Blog blog) {
+		int id=blog.getBlogId();
+		 Blog mBlog=blogDAO.getBlogById(id);
+
+			if (blog == null) {
+			//	System.out.println("Blog with blogId " + blogId + " Not Found");
 				return new ResponseEntity<String>("Update Blog Failue", HttpStatus.NOT_FOUND);
 			}
 			
@@ -103,6 +104,7 @@ public class BlogController {
 //---------------------list Blog-----------------------------------
 	@GetMapping(value = "/listBlogs")
 	public ResponseEntity<List<Blog>> listBlogs() {
+		System.out.println("listing blogs");
 		List<Blog> listBlogs = blogDAO.listBlogs();
 	
 		if (listBlogs.size() != 0) {

@@ -1,0 +1,32 @@
+package com.niit.testcase;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.UserDAO;
+import com.niit.Model.User;
+
+public class UserTestCase {
+	@Autowired
+	private static User user;
+	@Autowired
+	private static UserDAO userDAO;
+
+	@BeforeClass
+	public static void init() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		user = (User) context.getBean("user");
+
+		userDAO = (UserDAO) context.getBean("userDAO");
+
+	}
+	@Test
+	public void saveUserTestcase() {
+		
+	}
+}

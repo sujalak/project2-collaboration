@@ -1,0 +1,12 @@
+public class Message
+{
+	public static void main(String[] args) 
+    { 
+        StringBuffer sbf = new StringBuffer("where were you yesterday"); 
+        System.out.println("string buffer = " + sbf);
+        int startingPosition = sbf.indexOf(word);
+        int endingPosition = sbf + word.length();
+        sbf.replace(11,14 ,"u"); 
+        System.out.println("After replacing string buffer= " + sbf); 
+    } 
+}

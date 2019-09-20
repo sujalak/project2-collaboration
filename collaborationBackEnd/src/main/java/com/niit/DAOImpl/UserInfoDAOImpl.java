@@ -78,10 +78,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 		try {
 			Session session = sessionFactory.openSession();
-			Query query = session.createQuery("from UserInfo");
-			query.setParameter("username", userInfo.getUserName());
+			Query query=session.createQuery("from UserInfo where userName=:userName and password=:password");
+		
+			query.setParameter("userName", userInfo.getUserName());
 			query.setParameter("password", userInfo.getPassword());
-			UserInfo userInfonew = (UserInfo) query;
+			UserInfo userInfonew=(UserInfo)query.list().get(0);
+			
 			session.close();
 			if (userInfonew == null)
 				return false;

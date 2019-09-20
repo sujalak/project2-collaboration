@@ -1,0 +1,36 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Rina
+{ 
+    static final int max = 256;   
+    static void unique(String str) 
+    { 
+        int i;
+    	int[] count = new int[max];
+    	char[] sort = new char[50];
+        for (i = 0; i < str.length(); i++) 
+            if(str.charAt(i)!=' ') 
+                count[(int)str.charAt(i)]++; 
+        int n = i;
+        for (i = 0; i < n; i++)
+            if (count[(int)str.charAt(i)] == 1)
+            {
+                //System.out.print(str.charAt(i));
+                sort[i] = str.charAt(i);
+            }
+        System.out.print(sort[i].lenght());
+        
+        //String result = Arrays.toString(sort);
+        //System.out.println(result);
+        //result.replaceAll("\\s", "");
+        //System.out.println(result);
+    }
+    public static void main(String args[]) 
+    { 
+        String str;
+        Scanner sc = new Scanner(System.in);
+        str = sc.next();
+        unique(str);
+        sc.close();
+    } 
+} 

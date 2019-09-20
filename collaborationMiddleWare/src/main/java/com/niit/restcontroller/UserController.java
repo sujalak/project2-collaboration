@@ -37,7 +37,7 @@ public class UserController {
 	public ResponseEntity<UserInfo> validateLogin(@RequestBody UserInfo userInfo) {
 		
 		if (userInfoDAO.validateLogin(userInfo)) {
-			//UserInfo tempUser=(UserInfo)userInfoDAO.getUserInfoByName(userInfo.getUserName());
+			UserInfo tempUser=(UserInfo)userInfoDAO.getUserInfoByName(userInfo.getUserName());
 			userInfoDAO.updateOnlineStatus("Y",userInfo.getUserName());
 			return new ResponseEntity<UserInfo>(userInfo, HttpStatus.OK);
 		} else {

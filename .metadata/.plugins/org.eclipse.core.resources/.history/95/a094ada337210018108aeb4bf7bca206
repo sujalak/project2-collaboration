@@ -1,0 +1,77 @@
+package com.niit.testcase;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.UserDAO;
+
+import com.niit.Model.UserDetails;
+
+public class UserTestCase {
+	@Autowired
+	private static  UserDetails userdetail;
+	@Autowired
+	private static UserDAO userDAO;
+
+	@BeforeClass
+	public static void init() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		 userdetail = (UserDetails) context.getBean("userdetail");
+
+		userDAO = (UserDAO) context.getBean("userDAO");
+
+	}
+	@Test
+	public void saveUserTestcase() {
+		 userdetail.setUserId(1);
+		 userdetail.setUserName("shan");
+		 userdetail.setEmailId("shan@gmail.com");
+		boolean flag = userDAO.saveOrUpdateUser(userdetail);
+
+		Assert.assertEquals("Failed to add the user!", true, flag);
+	}
+@Ignore
+	
+	@Test
+	public void updateUserDetailsTestcase() {
+		
+		
+	 userdetail=userDAO.getUserById(1111);
+	 userdetail.setUserName("springframework");
+		
+		boolean flag = userDAO.saveOrUpdateUser( userdetail);
+
+		Assert.assertEquals("Failed to update the user!", true, flag);
+
+	}
+	@Ignore
+	@Test
+public void deleteUserDetailsTestcase() {
+			
+		
+		boolean flag = userDAO.delete(1222);
+
+		Assert.assertEquals("Failed to delete the user!", true, flag);
+
+	}
+	@Ignore
+	@Test
+	public void getUserDetailsbyIdTestcase() {
+		 userdetail=userDAO.getUserById(1111);
+		Assert.assertEquals("Failed to get the user!", "spring", userdetail.getUserDetailsName());
+	}
+
+	@Test
+	public void getAllUserDetailssTestCase() {
+		int count=userDAO.getAllUsers().size();
+		Assert.assertEquals("Failed to get the users!", 3, count);
+	}
+	
+}

@@ -1,0 +1,79 @@
+package com.niit.testcase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.BlogDAO;
+import com.niit.Model.Blog;
+
+public class BlogTestCase {
+	@Autowired
+	private static Blog blog;
+	@Autowired
+	private static BlogDAO blogDAO;
+
+	@BeforeClass
+	public static void init() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		blog = (Blog) context.getBean("blog");
+
+		blogDAO = (BlogDAO) context.getBean("blogDAO");
+
+	}
+
+	@Test
+	public void saveBlogTestcase() {
+		//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		//LocalDate localDate = LocalDate.now();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+		System.out.println(date);
+		blog.setBlogId(1111);
+		blog.setBlogName("spring");
+		blog.setBlogContent("it is a lightweight framework.");
+		blog.setCreatedDate(date);
+		blog.setUserName("robort");
+		boolean flag = blogDAO.saveOrUpdateBlog(blog);
+
+		Assert.assertEquals("Failed to add the blog!", true, flag);
+
+	}
+	/*@Test
+	public void updateBlogTestcase() {
+		
+		
+		blog.setBlogId(1222);
+		
+		blog.setBlogContent("Hibernate ORM is an object-relational mapping tool for the Java programming language. ");
+		
+		boolean flag = blogDAO.saveOrUpdateBlog(blog);
+
+		Assert.assertEquals("Failed to update the blog!", true, flag);
+
+	}
+	@Test
+public void deleteBlogTestcase() {
+		
+		
+		blog.setBlogId(1222);
+		
+		blog.setBlogContent("Hibernate ORM is an object-relational mapping tool for the Java programming language. ");
+		
+		boolean flag = blogDAO.saveOrUpdateBlog(blog);
+
+		Assert.assertEquals("Failed to update the blog!", true, flag);
+
+	}
+*/
+}

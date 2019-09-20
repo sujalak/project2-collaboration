@@ -1,0 +1,39 @@
+package com.niit.testcase;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.UserDAO;
+
+import com.niit.Model.UserDetails;
+
+public class UserTestCase {
+	@Autowired
+	private static  UserDetails userdetail;
+	@Autowired
+	private static UserDAO userDAO;
+
+	@BeforeClass
+	public static void init() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		 userdetail = (UserDetails) context.getBean(" userdetail");
+
+		userDAO = (UserDAO) context.getBean("userDAO");
+
+	}
+	@Test
+	public void saveUserTestcase() {
+		 userdetail.setUserId(1);
+		 userdetail.setUserName("shan");
+		 userdetail.setEmailId("shan@gmail.com");
+		boolean flag = userDAO.saveOrUpdateUser( userdetail);
+
+		Assert.assertEquals("Failed to add the user!", true, flag);
+	}
+}

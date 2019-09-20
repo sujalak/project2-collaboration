@@ -1,0 +1,14 @@
+public class Message
+{
+	public static void main(String[] args) 
+    { 
+		String sbf = new String("where were you yesterday"); 
+        System.out.println("string buffer = " + sbf);
+        if(sbf.contains("you"))
+        {
+        	System.out.println("True");
+        }
+        sbf.replace(11,14 ,"u"); 
+        System.out.println("After replacing string buffer= " + sbf); 
+    } 
+}

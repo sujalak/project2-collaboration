@@ -1,0 +1,21 @@
+package com.niit.DAO;
+
+import java.util.List;
+
+import com.niit.Model.Forum;
+
+public interface ForumDAO {
+	
+		public boolean saveOrUpdateForum(Forum forum);
+		
+
+		public Forum getForumById(String  forumId);
+
+		public List<Forum> getAllForums();
+		
+		public boolean delete(String forumId);
+
+
+	
+
+}

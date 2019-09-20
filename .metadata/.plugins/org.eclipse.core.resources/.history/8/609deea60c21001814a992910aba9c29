@@ -1,0 +1,13 @@
+package com.niit.collaborationBackEnd;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.Model.Blog;
+
+
+
+public class App 
+{
+	
+}

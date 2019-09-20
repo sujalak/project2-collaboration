@@ -1,0 +1,52 @@
+package com.niit.DAOImpl;
+
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.niit.DAO.UserDAO;
+import com.niit.Model.User;
+
+public class UserDAOImpl implements UserDAO{
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public UserDAOImpl(SessionFactory sessionFactory) {
+		super();
+		this.sessionFactory = sessionFactory;
+	}
+
+	public boolean saveOrUpdateUser(User user) {
+		Session session = sessionFactory.openSession();
+		try {
+			session.saveOrUpdate(blog);
+			session.flush();
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		return false;
+	}
+
+	public User getUserById(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean delete(int userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

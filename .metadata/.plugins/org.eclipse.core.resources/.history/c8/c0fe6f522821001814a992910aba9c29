@@ -1,0 +1,8 @@
+package com.niit.Model;
+
+public class User {
+	int userId;
+	String userName;
+    String emailId;
+    
+}

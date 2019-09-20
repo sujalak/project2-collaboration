@@ -1,0 +1,11 @@
+package com.niit.Model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Job {
+	@Id
+int jobid;
+	String location;
+}

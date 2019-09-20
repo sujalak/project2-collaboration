@@ -1,0 +1,3 @@
+INDEX VERSION 1.130
+F:\collaborationProject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4099731603.index
+\collaborationMiddleWare\src\main\java

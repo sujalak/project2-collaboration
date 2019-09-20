@@ -1,0 +1,12 @@
+public class Message
+{
+	public static void main(String[] args) 
+    { 
+  
+        StringBuffer sbf = new StringBuffer("Welcome to Geekshssgeeks"); 
+        System.out.println("string buffer = " + sbf);
+        sbf.replace(15, 18, "for"); 
+  
+        System.out.println("After replacing string buffer= " + sbf); 
+    } 
+}

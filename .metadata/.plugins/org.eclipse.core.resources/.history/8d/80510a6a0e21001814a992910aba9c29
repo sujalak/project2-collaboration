@@ -1,0 +1,37 @@
+package com.niit.testcase;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.ForumDAO;
+import com.niit.Model.Forum;
+
+public class ForumTestCase {
+	@Autowired
+	private static Forum forum;
+	@Autowired
+	private static ForumDAO forumDAO;
+
+	@BeforeClass
+	public static void init() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		forum = (Forum) context.getBean("forum");
+
+		forumDAO = (ForumDAO) context.getBean("forumDAO");
+
+	}
+	@Test
+	public void saveOrUpdateForum() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		
+		
+	}
+
+
+}

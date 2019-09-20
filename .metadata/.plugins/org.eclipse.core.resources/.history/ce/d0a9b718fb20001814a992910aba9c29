@@ -1,0 +1,30 @@
+package com.niit.testcase;
+
+import org.junit.BeforeClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.BlogDAO;
+import com.niit.Model.Blog;
+
+public class BlogTestCase {
+	@Autowired
+	private static Blog blog;
+	@Autowired
+	private static BlogDAO blogDAO;
+
+	@BeforeClass
+	public static void init()
+	{
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+		
+		blog = (Blog) context.getBean("blog");
+		
+		blogDAO = (BlogDAO) context.getBean("blogDAO");
+		
+	}
+
+
+}

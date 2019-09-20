@@ -26,9 +26,10 @@ public class ProfilePicDAOImpl implements ProfilePicDAO{
 		try {
 			
 			session.saveOrUpdate(profilePic);
+			System.out.println("profilepicture uplaoded");
 			session.flush();
 			session.close();
-			return true;
+			return true; 
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

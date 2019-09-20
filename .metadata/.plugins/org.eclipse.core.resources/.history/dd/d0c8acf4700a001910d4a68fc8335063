@@ -1,0 +1,12 @@
+public class Message
+{
+	public static void main(String[] args) 
+    { 
+  
+        StringBuffer sbf = new StringBuffer("Welcome to Programming"); 
+        System.out.println("string buffer = " + sbf);
+        sbf.replace(, ,); 
+  
+        System.out.println("After replacing string buffer= " + sbf); 
+    } 
+}

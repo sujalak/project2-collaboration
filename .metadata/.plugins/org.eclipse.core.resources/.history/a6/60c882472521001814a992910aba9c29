@@ -1,0 +1,37 @@
+package com.niit.testcase;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.niit.DAO.JobDAO;
+import com.niit.Model.Job;
+
+public class JobTestCase {
+	@Autowired
+	private static Job job;
+	@Autowired
+	private static JobDAO jobDAO;
+
+	@BeforeClass
+	public static void init() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		job = (Job) context.getBean("job");
+
+		jobDAO = (JobDAO) context.getBean("jobDAO");
+
+	}
+	@Test
+	public void saveJobTestcase() {
+		job.setJobid(1234);
+		job.setDesignation("manger");
+		job.setJobdescription("senior manament");
+		job.setSalary(73000);
+	}
+
+
+}
